@@ -19,6 +19,6 @@ Scenario: Render Text After Button is Pressed
 Note that the necessary python dependencies are available in the requirements.txt
 - To run the app locally, 
     - python ${PATH_TO_REPO}/src/app.py
-- To run tests,
+- To run tests, this requires chromium-chromedriver (more friendly to CI server)
     - cd ${PATH_TO_REPO}/test/features
-    - behave
+    - behave -D url=${server_url}
