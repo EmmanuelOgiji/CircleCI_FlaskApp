@@ -23,11 +23,11 @@ jobs:
         - python/install-packages:
             pkg-manager: pip
         - run:
-            name: Update apt
-            command: apt update && apt-upgrade
-        - run:
             name: Install chromedriver
-            command: apt install chromium-chromedriver
+            command: |
+            sudo apt update && sudo apt-upgrade
+            sudo apt install chromium-chromedriver
         - run:
             name: Run behave tests
-            command: cd test/features && behave
+            command: cd test/features && behave -D url=https://flask-circleci-epo.herokuapp.com/
+

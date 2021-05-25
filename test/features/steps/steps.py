@@ -6,11 +6,10 @@ from behave import *
 
 from selenium import webdriver
 
-url = "http://127.0.0.1:5000/"
-
 
 @given(u'I access the app')
 def step_impl(context):
+    url = context.config.userdata['url']
     context.driver = webdriver.Chrome()
     context.driver.get(url)
 
