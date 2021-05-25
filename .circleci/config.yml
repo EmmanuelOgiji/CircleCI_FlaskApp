@@ -2,26 +2,18 @@ version: 2.1
 
 orbs:
   python: circleci/python@1.2
+  heroku: circleci/heroku@0.0.10.
 
 workflows:
-  sample:
+  flask-app-deploy-and-test:
       jobs:
-        - deploy
-        - test
-
-
-jobs:
-  deploy:
-    machine:
-      enabled: true
-    environment:
-      HEROKU_APP: "flask-circleci-epo"
-    steps:
-      - checkout
-      - run:
-          name: Setup Heroku
-          command: |
-            git push heroku master
+        - heroku/deploy-via-git:
+            filters:
+              branches:
+                only: master
+        - test:
+          requires:
+            - heroku/deploy-via-git
 
   test:
     docker:
