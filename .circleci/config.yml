@@ -27,6 +27,7 @@ jobs:
             command: |
               sudo apt update
               sudo apt install chromium-chromedriver
+              export PATH=$PATH:/usr/lib/chromium-browser/chromedriver
         - run:
             name: Run behave tests
             command: |
