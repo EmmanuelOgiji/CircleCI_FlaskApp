@@ -2,7 +2,7 @@ version: 2.1
 
 orbs:
   python: circleci/python@1.2
-  heroku: circleci/heroku@0.0.10.
+  heroku: circleci/heroku@0.0.10
 
 workflows:
   flask-app-deploy-and-test:
@@ -12,22 +12,22 @@ workflows:
               branches:
                 only: master
         - test:
-          requires:
-            - heroku/deploy-via-git
-
+            requires:
+              - heroku/deploy-via-git
+jobs:
   test:
-    docker:
+      docker:
       - image: cimg/python:3.8
-    steps:
-      - checkout
-      - python/install-packages:
-          pkg-manager: pip
-      - run:
-          name: Update apt
-          command: apt update && apt-upgrade
-      - run:
-          name: Install chromedriver
-          command: apt install chromium-chromedriver
-      - run:
-          name: Run behave tests
-          command: cd test/features && behave
+      steps:
+        - checkout
+        - python/install-packages:
+            pkg-manager: pip
+        - run:
+            name: Update apt
+            command: apt update && apt-upgrade
+        - run:
+            name: Install chromedriver
+            command: apt install chromium-chromedriver
+        - run:
+            name: Run behave tests
+            command: cd test/features && behave
