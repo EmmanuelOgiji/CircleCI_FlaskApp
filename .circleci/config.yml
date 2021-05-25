@@ -25,8 +25,8 @@ jobs:
         - run:
             name: Install chromedriver
             command: |
-            sudo apt update && sudo apt-upgrade
-            sudo apt install chromium-chromedriver
+              sudo apt update && sudo apt-upgrade
+              sudo apt install chromium-chromedriver
         - run:
             name: Run behave tests
             command: cd test/features && behave -D url=https://flask-circleci-epo.herokuapp.com/
