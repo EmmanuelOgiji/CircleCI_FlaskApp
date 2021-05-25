@@ -23,8 +23,11 @@ jobs:
       - python/install-packages:
           pkg-manager: pip
       - run:
-          name: Download chromedriver and Run tests
-          command:
-            - apt update && apt-upgrade
-            - apt install chromium-chromedriver
-            - cd test/features && behave
+          name: Update apt
+          command: apt update && apt-upgrade
+      - run:
+          name: Install chromedriver
+          command: apt install chromium-chromedriver
+      - run:
+          name: Run behave tests
+          command: cd test/features && behave
