@@ -20,7 +20,7 @@ def step_impl(context):
     options.add_argument('--headless')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
-    context.driver = webdriver.Chrome('chromedriver', options=options)
+    context.driver = webdriver.Chrome('/usr/lib/chromium-browser/chromedriver', options=options)
 
     # go to url
     context.driver.get(url)
