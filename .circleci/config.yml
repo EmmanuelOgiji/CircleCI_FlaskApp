@@ -6,7 +6,8 @@ orbs:
 workflows:
   sample:
       jobs:
-      - build-and-test
+        - deploy
+        - test
 
 
 jobs:
