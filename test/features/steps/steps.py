@@ -10,16 +10,13 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 
 
-@given(u'I have my chromium browser and chrome setup')
+@given(u'I have my browser driver setup')
 def step_impl(context):
     # setup webdriver
-    options = webdriver.ChromeOptions()
+    options = webdriver.FirefoxOptions()
     options.add_argument('--headless')  # set as headless as we don't need to view UI
     options.add_argument('--disable-dev-shm-usage')  # set flag to reduce memory usage
-    # get chromedriver path from command line userdata
-    path = context.config.userdata['path']
-    context.driver = webdriver.Chrome(
-        executable_path=path,
+    context.driver = webdriver.Firefox(
         options=options
     )
 

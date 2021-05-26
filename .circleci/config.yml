@@ -23,12 +23,8 @@ jobs:
         - python/install-packages:
             pkg-manager: pip
         - run:
-            name: Install chromedriver
-            command: |
-              sudo apt update
-              sudo apt-get install -y chromium-chromedriver
-              which chromedriver
-              chromedriver --version
+            name: Check geckodriver
+            command: geckodriver --version
         - run:
             name: Run behave tests
             command: |
