@@ -11,11 +11,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
 
 
-@given(u'I access the app')
+@given(u'I have my chromium browser and chrome setup')
 def step_impl(context):
-    # get url from command line userdata
-    url = context.config.userdata['url']
-
     # setup webdriver
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')  # set as headless as we don't need to view UI
@@ -24,6 +21,12 @@ def step_impl(context):
         ChromeDriverManager().install(),
         options=options
     )
+
+
+@when(u'I access the homepage of the app')
+def step_impl(context):
+    # get url from command line userdata
+    url = context.config.userdata['url']
 
     # go to url
     context.driver.get(url)
@@ -48,7 +51,7 @@ def step_impl(context):
     )
 
 
-@then(u'Emmanuel Pius-Ogiji is rendered')
+@then(u'Emmanuel Pius-Ogiji is displayed')
 def step_impl(context):
     # check that page contains "Emmanuel Pius-Ogiji"
     assert_that(context.driver.page_source).contains("Emmanuel Pius-Ogiji")

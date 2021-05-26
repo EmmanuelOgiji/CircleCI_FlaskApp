@@ -25,10 +25,13 @@ jobs:
         - run:
             name: Install chromedriver
             command: |
-              snap install chromium
-              snap run chromium
-              chromium-browser --version
+              sudo apt update
+              sudo apt-get install -y chromium-chromedriver
+              sudo apt-get install -y chromium-browser
+              sudo apt-get install -y snapd
+              sudo snap install chromium
               chromedriver --version
+              chromium-browser --version
         - run:
             name: Run behave tests
             command: |

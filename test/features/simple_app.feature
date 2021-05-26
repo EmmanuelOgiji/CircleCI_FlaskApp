@@ -1,6 +1,7 @@
 Feature: Simple Flask App
 
-Scenario: Render Text After Button is Pressed
-    Given I access the app
-    When I click the button that says Who built this?
-    Then Emmanuel Pius-Ogiji is rendered
+Scenario: Render Text After Button is Clicked
+    Given I have my chromium browser and chrome setup
+    When I access the homepage of the app
+    And I click the button that says Who built this?
+    Then Emmanuel Pius-Ogiji is displayed
