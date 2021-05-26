@@ -27,8 +27,10 @@ jobs:
             command: |
               sudo apt update
               sudo apt-get install -y chromium-chromedriver
+              sudo apt-get install -y chromium-browser
+              ./chromedriver
               sudo apt-get install -y libglib2.0-0 libnss3 libgconf-2-4 libfontcongfig1
-              chromedriver -vversion
+              chromedriver --version
               chromium-browser --version
         - run:
             name: Run behave tests
