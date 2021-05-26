@@ -9,7 +9,6 @@ from selenium.webdriver.common.by import By
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
-from webdriver_manager.utils import ChromeType
 
 
 @given(u'I access the app')
@@ -22,7 +21,7 @@ def step_impl(context):
     options.add_argument('--headless')  # set as headless as we don't need to view UI
     options.add_argument('--disable-dev-shm-usage')  # set flag to reduce memory usage
     context.driver = webdriver.Chrome(
-        ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install(),
+        ChromeDriverManager().install(),
         options=options
     )
 
