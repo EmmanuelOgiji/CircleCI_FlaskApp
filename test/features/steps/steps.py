@@ -22,7 +22,7 @@ def step_impl(context):
     options.add_argument('--headless')  # set as headless as we don't need to view UI
     options.add_argument('--disable-dev-shm-usage')  # set flag to reduce memory usage
     context.driver = webdriver.Chrome(
-        ChromeDriverManager().install(),
+        ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install(),
         options=options
     )
 
