@@ -6,8 +6,10 @@ from behave import *
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
+from webdriver_manager.utils import ChromeType
 
 
 @given(u'I access the app')
@@ -17,10 +19,12 @@ def step_impl(context):
 
     # setup webdriver
     options = webdriver.ChromeOptions()
-    options.add_argument('--headless')
-    options.add_argument('--no-sandbox')
-    options.add_argument('--disable-dev-shm-usage')
-    context.driver = webdriver.Chrome('/usr/bin/chromium-browser', options=options)
+    options.add_argument('--headless')  # set as headless as we don't need to view UI
+    options.add_argument('--disable-dev-shm-usage')  # set flag to reduce memory usage
+    context.driver = webdriver.Chrome(
+        ChromeDriverManager().install(),
+        options=options
+    )
 
     # go to url
     context.driver.get(url)
