@@ -22,11 +22,11 @@ jobs:
         - checkout
         - python/install-packages:
             pkg-manager: pip
-#        - run:
-#            name: Install chromedriver
-#            command: |
-#              sudo apt update
-#              sudo apt-get install -y chromium-chromedriver
+        - run:
+            name: Install chromedriver
+            command: |
+              sudo apt update
+              sudo apt-get install -y chromium-chromedriver
         - run:
             name: Run behave tests
             command: |
