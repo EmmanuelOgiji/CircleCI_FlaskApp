@@ -16,7 +16,10 @@ def step_impl(context):
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')  # set as headless as we don't need to view UI
     options.add_argument('--disable-dev-shm-usage')  # set flag to reduce memory usage
+    # get chromedriver path from command line userdata
+    path = context.config.userdata['path']
     context.driver = webdriver.Chrome(
+        executable_path=path,
         options=options
     )
 

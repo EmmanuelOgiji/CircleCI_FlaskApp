@@ -27,6 +27,8 @@ jobs:
             command: |
               sudo apt update
               sudo apt-get install -y chromium-chromedriver
+              which chromedriver
+              chromedriver --version
         - run:
             name: Run behave tests
             command: |
