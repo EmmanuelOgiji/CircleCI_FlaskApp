@@ -26,5 +26,5 @@ jobs:
             name: Run behave tests
             command: |
               cd test/features
-              sudo behave -D url=https://flask-circleci-epo.herokuapp.com/
+              behave -D url="https://${HEROKU_APP_NAME}.herokuapp.com/"
 
