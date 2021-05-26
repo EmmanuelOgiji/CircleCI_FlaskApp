@@ -2,7 +2,8 @@ version: 2.1
 
 orbs:
   python: circleci/python@1.2
-#  heroku: circleci/heroku@0.0.10
+  heroku: circleci/heroku@0.0.10
+  browser-tools: circleci/browser-tools@1.1.3
 
 workflows:
   flask-app-deploy-and-test:
@@ -22,6 +23,13 @@ jobs:
         - checkout
         - python/install-packages:
             pkg-manager: pip
+        - browser-tools/install-chrome
+        - browser-tools/install-chromedriver
+        - run:
+            name: Check chrome install
+            command: |
+              google-chrome --version
+              chromedriver --version
         - run:
             name: Check geckodriver
             command: geckodriver --version
@@ -29,5 +37,5 @@ jobs:
             name: Run behave tests
             command: |
               cd test/features
-              behave -D url=https://flask-circleci-epo.herokuapp.com/
+              behave -D url="https://flask-circleci-epo.herokuapp.com/"
 
