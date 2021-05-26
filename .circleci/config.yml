@@ -8,13 +8,13 @@ orbs:
 workflows:
   flask-app-deploy-and-test:
       jobs:
-#        - heroku/deploy-via-git:
-#            filters:
-#              branches:
-#                only: master
+        - heroku/deploy-via-git:
+            filters:
+              branches:
+                only: master
         - test
-#            requires:
-#              - heroku/deploy-via-git
+            requires:
+              - heroku/deploy-via-git
 jobs:
   test:
       docker:
@@ -31,11 +31,8 @@ jobs:
               google-chrome --version
               chromedriver --version
         - run:
-            name: Check geckodriver
-            command: geckodriver --version
-        - run:
             name: Run behave tests
             command: |
               cd test/features
-              behave -D url="https://flask-circleci-epo.herokuapp.com/"
+              behave -D url="https://${HEROKU_APP_NAME}.herokuapp.com/"
 
