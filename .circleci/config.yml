@@ -11,7 +11,7 @@ workflows:
 #            filters:
 #              branches:
 #                only: master
-        - test:
+        - test
 #            requires:
 #              - heroku/deploy-via-git
 jobs:
