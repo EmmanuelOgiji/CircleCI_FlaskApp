@@ -10,7 +10,7 @@ workflows:
       jobs:
         #        - Validate HTML templates
         #        - Run unit tests
-        - heroku/deploy-via-git:
+        - heroku/deploy-via-git
 #            requires:
 #              - Run unit tests
 #              - Validate HTML templates
