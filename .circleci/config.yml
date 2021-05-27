@@ -8,6 +8,7 @@ orbs:
 workflows:
   flask-app-deploy-and-test:
       jobs:
+        - Validate HTML templates
         - Run unit tests
         - heroku/deploy-via-git:
             requires:
@@ -19,6 +20,16 @@ workflows:
             requires:
               - heroku/deploy-via-git
 jobs:
+  Validate HTML templates:
+    docker:
+      - image: 18fgsa/html-proofer
+      steps:
+        - checkout
+        - run:
+            name: Run HTML proofer
+            command: |
+              cd src/templates
+              htmlproofer --check_html .
   Run unit tests:
       docker:
       - image: cimg/python:3.9
