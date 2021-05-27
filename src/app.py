@@ -1,7 +1,9 @@
 """
-As a user of this app,
-when I click the button that says 'Who built this?'
-then I get the name of who developed this "Emmanuel Pius-Ogiji"
+Scenario: Render Text After Button is Clicked
+    Given I have my browser setup
+    When I access the homepage of the app
+    And I click the button that says Who built this?
+    Then Emmanuel Pius-Ogiji is displayed
 
 Git testing
 """
@@ -24,6 +26,7 @@ def home_page():
 
 @app.route('/author')
 def button_click():
+    logger.info("Rendering author page")
     return render_template_string("Emmanuel Pius-Ogiji")
 
 

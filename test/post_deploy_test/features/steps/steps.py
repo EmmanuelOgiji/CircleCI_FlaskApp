@@ -9,7 +9,7 @@ from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
 
 
-@given(u'I have my webdriver setup')
+@given(u'I have my browser setup')
 def step_impl(context):
     # setup webdriver
     options = webdriver.ChromeOptions()
