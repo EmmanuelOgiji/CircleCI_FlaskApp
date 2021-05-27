@@ -27,11 +27,12 @@ jobs:
         - python/install-packages:
             pkg-manager: pip
         - run:
-            name: Run unit tests
-            command: |
-              python -m xmlrunner discover -s test.unit_test -o test_reports
+            name: Run unit tests and test coverage
+            command: python -m coverage run --source src --omit *__init__.py* -m xmlrunner discover -s test.unit_test -o reports && coverage_reports xml -o coverage/coverage.xml --fail-under 80
         - store_test_results:
             path: test_reports
+        - store_artifacts:
+            path: coverage_reports
   UI post-deploy test:
       docker:
       - image: cimg/python:3.9-browsers
