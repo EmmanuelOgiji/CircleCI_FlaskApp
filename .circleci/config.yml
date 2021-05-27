@@ -20,6 +20,7 @@ workflows:
         - UI post-deploy test:
             requires:
               - heroku/deploy-via-git
+
 jobs:
   Validate HTML templates:
       docker:
@@ -31,6 +32,7 @@ jobs:
             command: |
               cd src/templates
               htmlproofer --check_html --checks_to_ignore=LinkCheck	.
+
   Run unit tests:
       docker:
       - image: cimg/python:3.9
@@ -50,6 +52,7 @@ jobs:
             path: test_reports
         - store_artifacts:
             path: coverage_reports
+
   UI post-deploy test:
       docker:
       - image: cimg/python:3.9-browsers
@@ -71,5 +74,3 @@ jobs:
               behave -D url="https://${HEROKU_APP_NAME}.herokuapp.com/" --junit --junit-directory test_reports
         - store_test_results:
             path: test/post_deploy_test/features/test_reports
-
-
