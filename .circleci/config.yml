@@ -18,7 +18,7 @@ workflows:
               - heroku/deploy-via-git
 jobs:
   Run unit tests:
-    docker:
+      docker:
       - image: cimg/python:3.9
       steps:
         - checkout
