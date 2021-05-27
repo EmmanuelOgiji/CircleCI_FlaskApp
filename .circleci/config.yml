@@ -13,6 +13,7 @@ workflows:
         - heroku/deploy-via-git:
             requires:
               - Run unit tests
+              - Validate HTML templates
             filters:
               branches:
                 only: master
@@ -29,7 +30,7 @@ jobs:
             name: Run HTML proofer
             command: |
               cd src/templates
-              htmlproofer --check_html .
+              htmlproofer --check_html --checks_to_ignore=["LinkCheck"]	.
   Run unit tests:
       docker:
       - image: cimg/python:3.9
