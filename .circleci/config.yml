@@ -29,7 +29,7 @@ jobs:
         - run:
             name: Run unit tests and test coverage
             command: |
-              python -m coverage run --source src --omit *__init__.py* -m xmlrunner discover -s test.unit_test -o reports &&
+              python -m coverage run --source src --omit *__init__.py* -m xmlrunner discover -s test.unit_test -o test_reports &&
               coverage xml -o coverage_reports/coverage.xml --fail-under 80
         - store_test_results:
             path: test_reports
