@@ -3,11 +3,10 @@ Requires chromedriver, this should also be approved
 """
 from assertpy import assert_that
 from behave import *
-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as ec
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 @given(u'I have my webdriver setup')
@@ -31,14 +30,14 @@ def step_impl(context):
 
     # wait for button to appear with max timeout of 15 secs
     WebDriverWait(context.driver, 15).until(
-        ec.presence_of_element_located((By.ID, "testButton"))
+        ec.element_to_be_clickable((By.ID, "authorButton"))
     )
 
 
 @when(u'I click the button that says Who built this?')
 def step_impl(context):
     # find button
-    button = context.driver.find_element_by_id("testButton")
+    button = context.driver.find_element_by_id("authorButton")
 
     # click button
     button.click()

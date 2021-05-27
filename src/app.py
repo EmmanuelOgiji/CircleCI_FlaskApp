@@ -7,7 +7,7 @@ Git testing
 """
 import logging
 
-from flask import Flask, render_template, request, render_template_string
+from flask import Flask, render_template, render_template_string
 
 logger = logging.getLogger()
 logging.basicConfig(level="INFO")
@@ -22,10 +22,9 @@ def home_page():
     return render_template("home.html")
 
 
-@app.route('/', methods=['POST'])
+@app.route('/author')
 def button_click():
-    if request.form.get('action1') == 'Who built this?':
-        return render_template_string("Emmanuel Pius-Ogiji")
+    return render_template_string("Emmanuel Pius-Ogiji")
 
 
 if __name__ == '__main__':

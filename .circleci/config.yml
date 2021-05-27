@@ -8,15 +8,27 @@ orbs:
 workflows:
   flask-app-deploy-and-test:
       jobs:
+        - Run unit tests
         - heroku/deploy-via-git:
             filters:
               branches:
                 only: master
-        - test:
+        - UI post-deploy test:
             requires:
               - heroku/deploy-via-git
 jobs:
-  test:
+  Run unit tests:
+    docker:
+      - image: cimg/python:3.9
+      steps:
+        - checkout
+        - python/install-packages:
+            pkg-manager: pip
+        - run:
+            name: Run unit tests
+            command: |
+              python -m unittest discover -s test.unit_test
+  UI post-deploy test:
       docker:
       - image: cimg/python:3.9-browsers
       steps:
@@ -31,8 +43,8 @@ jobs:
               google-chrome --version
               chromedriver --version
         - run:
-            name: Run behave tests
+            name: Run behave post-deploy tests
             command: |
-              cd test/features
+              cd test/post_deploy_test/features
               behave -D url="https://${HEROKU_APP_NAME}.herokuapp.com/"
 
