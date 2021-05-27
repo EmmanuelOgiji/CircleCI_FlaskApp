@@ -21,7 +21,7 @@ workflows:
               - heroku/deploy-via-git
 jobs:
   Validate HTML templates:
-    docker:
+      docker:
       - image: 18fgsa/html-proofer
       steps:
         - checkout
